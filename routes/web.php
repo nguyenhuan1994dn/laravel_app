@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,11 +29,19 @@ Route::get('/admin', function () {
 
 
 // Route::resource('admin/users', 'AdminUsersController');
+Route::group(['middleware' => 'admin'], function () {
 
-Route::resource('admin/users', 'AdminUsersController', ['names' => [
+    Route::resource('admin/users', 'AdminUsersController', ['names' => [
+        'index' => 'admin.users.index',
+        'create' => 'admin.users.create',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+    ]]);
 
-    'index' => 'admin.users.index',
-    'create' => 'admin.users.create',
-    'edit' => 'admin.users.edit',
-    'update' => 'admin.users.update',
-]]);
+    Route::resource('admin/posts', 'AdminPostsController', ['names' => [
+        'index' => 'admin.posts.index',
+        'create' => 'admin.posts.create',
+        'edit' => 'admin.posts.edit',
+        'update' => 'admin.posts.update',
+    ]]);
+});
