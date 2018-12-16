@@ -3,6 +3,7 @@
 
 
 @section('content')
+@include('includes.tinyeditor')
 <h1>Edit Posts</h1>
 @include('includes.form_error')
 
